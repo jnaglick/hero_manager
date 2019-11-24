@@ -2,15 +2,18 @@ import { h, render, Component } from 'preact';
 import { Skill, Skills } from '../ref/skill'
 
 class Hello extends Component {
-    doNeedful(selectedSkill: Skill) {
-        this.setState({
-            selectedSkill
-        });
+    constructor() {
+        super();
+        fetch('/hello')
+        .then(response => response.json())
+        .then(({ hello }) => {
+            this.setState({ hello });
+        })
     }
 
-	render(props: {}, state: { selectedSkill: Skill }) {
+	render(props: {}, state: { hello: string }) {
 		return <div style='color: blue;'>
-            hai noob
+            hello, { state.hello }
         </div>
 	}
 }

@@ -1,22 +1,18 @@
 {
   "name": "hero_manager",
   "scripts": {
-    "build:client": "npx webpack --mode=production --config webpack.client.config.js",
-    "build:server": "npx webpack --mode=production --config webpack.server.config.js",
-    "build": "concurrently \"npm run build:client\" \"npm run build:server\"",
-    "build:client:dev": "npx webpack --mode=development --config webpack.client.config.js",
-    "build:server:dev": "npx webpack --mode=development --config webpack.server.config.js",
-    "build:dev": "concurrently \"npm run build:client:dev\" \"npm run build:server:dev\"",
+    "build": "npx webpack --mode=production",
     "start": "node dist/server.bundle.js",
-    "listen:client:dev": "npx webpack --watch --mode=development --config webpack.client.config.js",
-    "listen:server:dev": "npx webpack --watch --mode=development --config webpack.server.config.js",
+    "build:dev:": "npx webpack --mode=development",
+    "watch:dev": "npx webpack --watch --mode=development",
     "nodemon:dev": "nodemon --watch \"dist/server.bundle.js\" --exec \"npm run start\"",
-    "start:dev": "concurrently \"npm run listen:client:dev\" \"npm run listen:server:dev\" \"npm run nodemon:dev\""
+    "start:dev": "concurrently \"npm run watch:dev\" \"npm run nodemon:dev\""
   },
   "version": "0.0.1",
   "author": "John M Naglick <jnaglick@gmail.com>",
   "devDependencies": {
     "@types/koa": "2.0.52",
+    "@types/koa-router": "7.0.42",
     "@types/koa-static": "4.0.1",
     "@types/node": "12.12.0",
     "concurrently": "^5.0.0",
@@ -30,6 +26,7 @@
   },
   "dependencies": {
     "koa": "2.11.0",
+    "koa-router": "7.4.0",
     "koa-static": "5.0.0",
     "preact": "^10.0.5"
   }
