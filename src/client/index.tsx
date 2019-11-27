@@ -1,19 +1,29 @@
 import { h, render, Component } from 'preact';
-import { Skill, Skills } from '../ref/skill'
+import User from '../model/user'
 
 class Hello extends Component {
     constructor() {
         super();
-        fetch('/hello')
+        fetch('/api/user')
         .then(response => response.json())
-        .then(({ hello }) => {
-            this.setState({ hello });
+        .then(({ users }) => {
+            this.setState({ users });
         })
     }
 
-	render(props: {}, state: { hello: string }) {
-		return <div style='color: blue;'>
-            hello, { state.hello }
+	render(props: {}, { users }: { users: Array<User> }) {
+        console.log(users);
+
+        if (!users) {
+            return 'loading'
+        }
+
+        return <div>
+            { 
+                users.map((user) =>
+                    <div>name: { user.name }</div>
+                ) 
+            }
         </div>
 	}
 }
