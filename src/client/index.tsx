@@ -1,5 +1,5 @@
 import { h, render, Component } from 'preact';
-import User from '../model/user'
+import User from 'model/user'
 
 class Hello extends Component {
     constructor() {

@@ -1,4 +1,4 @@
-import Skill, { SkillFamily, SkillRequirements } from './skill'
+import Skill, { SkillFamily, SkillRequirements } from 'ref/skill'
 
 export class Ability {
     readonly name: String;

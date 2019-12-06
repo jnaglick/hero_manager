@@ -1,5 +1,5 @@
 import { IMiddleware } from 'koa-router'
-import User from '../../model/user'
+import User from 'model/user'
 
 const UserDB: Array<User> = [{
     id: '0',

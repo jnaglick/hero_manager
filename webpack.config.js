@@ -4,11 +4,15 @@ const path = require('path');
 
 const baseConfig = {
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve('./dist'),
         filename: '[name].bundle.js'
     },
     resolve: {
-        extensions: [".ts", ".tsx", ".js"]
+        extensions: [".ts", ".tsx", ".js"],
+        modules: [
+            path.resolve('./node_modules'),
+            path.resolve('./src'),
+        ]
     },
     module: {
         rules: [

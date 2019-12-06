@@ -1,6 +1,6 @@
 import Koa from 'koa';
 import serve from 'koa-static';
-import router from './router/index'; // TODO why does this need index?? >:|
+import router from 'server/router';
 
 const app = new Koa();
 
