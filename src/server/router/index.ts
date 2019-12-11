@@ -4,6 +4,7 @@ const router = new Router({
 });
 
 import * as user from 'server/router/user'
+import * as character from 'server/router/character'
 
 router
 .all('*', (ctx, next) => {
@@ -11,6 +12,8 @@ router
     next();
 })
 .get('/user', user.index)
-.get('/user/:id', user.get);
+.get('/user/:id', user.get)
+.get('/character', character.index)
+;
 
 export default router;

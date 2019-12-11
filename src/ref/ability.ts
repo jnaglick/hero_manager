@@ -1,11 +1,11 @@
-import Skill, { SkillFamily, SkillRequirements } from 'ref/skill'
+import { Skill, SkillRequirement } from 'ref/skill'
 
 export class Ability {
     readonly name: String;
-    readonly requirements?: SkillRequirements;
+    readonly requirements?: SkillRequirement;
 
     constructor(name: String,
-                requirements?: SkillRequirements
+                requirements?: SkillRequirement
     ) {
         this.name = name;
         this.requirements = requirements;
@@ -14,34 +14,28 @@ export class Ability {
 
 export namespace Abilities {
 /*
-    Move,
-    Consume,
-    Throw,
-    Attack,
-    CastSpell,
+    Move, Attack, Cast, Consume
 
+    Parry,
     Berserk,
-    Whirlwind,
+    Whirlwind, 
     Sneak,
-    Invis,
+    Hide/Invis,
     Backstab,
 */
-    export const Attack = new Ability(
-        'Attack',
-        {
-            family: SkillFamily.MeleeWeapons,
-            level: 1
-        }
+    export const Move = new Ability(
+        'Move'
     );
 
     export const Backstab = new Ability(
         'Backstab',
         [{
-            skill: Skill.Daggers,
-            level: 20
-        }, {
-            skill: Skill.Sneaking,
-            level: 20
+            level: 30,
+            skill: Skill.Stabbing
+        },
+        {
+            level: 30,
+            skill: Skill.Stealth
         }]
     )
 }

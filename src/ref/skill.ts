@@ -1,81 +1,149 @@
-enum Family {
-    MeleeWeapons = 'Melee Weapons',
-    RangedWeapons = 'Ranged Weapons',
+export enum Skill {
+    Fighting = 'fighting',
+    Defense = 'defense',
+    Evasion = 'evasion',
+    Armour = 'armour',
 
-    Fighting = 'Fighting',
-    Magic = 'Magic',
-    Trickery = 'Trickery'
+    Stabbing = 'stabbing',
+    Slashing = 'slashing',
+    Bludgeoning = 'bludg',
+    Archery = 'archery',
+
+    AirMagick = 'air',
+    EarthMagick = 'earth',
+    FireMagick = 'fire',
+    WaterMagick = 'water',
+    EtherealMagick = 'ethereal',
+    UmbralMagick = 'umbral',
+
+    Stealth = 'stealth',
+    Awareness = 'awareness',
+    LootFinding = 'lootfinding',
+    FirstAid = 'firstaid'
 }
-export const SkillFamily = Family
 
-export class Skill {
-    readonly name: String;
-    readonly family?: Family | Array<Family>;
+/*
+    build ideas (4 and 8 skill)
 
-    constructor(name: String,
-                family?: Family | Array<Family>
+    tank
+        bludgeoning     evasion
+        fighting        awareness
+        armour          lootfinding
+        defense         firstaid
+
+    mage
+        fire        earth
+        umbral      air
+        defense     ethereal
+        evasion     armor
+
+    healer
+        ethereal    water
+        air         firstaid
+        defense     awareness
+        evasion     armor
+
+    dps
+        stabbing    defense
+        fighting    armor
+        stealth     awareness
+        evasion     lootfinding
+*/
+
+type SkillLevel = number
+
+interface ISkillRequirement {
+    skill: Skill
+    level: SkillLevel,
+}
+
+export type SkillRequirement = 
+    | ISkillRequirement 
+    | Array<ISkillRequirement>
+
+export interface SkillSet {
+    [Skill.Fighting]: SkillLevel,
+    [Skill.Defense]: SkillLevel,
+    [Skill.Evasion]: SkillLevel,
+    [Skill.Armour]: SkillLevel,
+
+    [Skill.Stabbing]: SkillLevel,
+    [Skill.Slashing]: SkillLevel,
+    [Skill.Bludgeoning]: SkillLevel,
+    [Skill.Archery]: SkillLevel,
+
+    [Skill.AirMagick]: SkillLevel,
+    [Skill.EarthMagick]: SkillLevel,
+    [Skill.FireMagick]: SkillLevel,
+    [Skill.WaterMagick]: SkillLevel,
+    [Skill.EtherealMagick]: SkillLevel,
+    [Skill.UmbralMagick]: SkillLevel,
+
+    [Skill.Stealth]: SkillLevel,
+    [Skill.Awareness]: SkillLevel,
+    [Skill.LootFinding]: SkillLevel,
+    [Skill.FirstAid]: SkillLevel,
+}
+
+class SkillClass {
+    readonly id: Skill;
+    readonly name: string;
+    readonly desc?: string;
+
+    constructor(id: Skill,
+                name: string,
+                description?: string
     ) {
+        this.id = id;
         this.name = name;
-        this.family = family;
+        this.desc = description;
     }
 }
 
 export namespace Skills {
-    export const Daggers = new Skill(
-        'Daggers',
-        Family.MeleeWeapons
+    export const Fighting = new SkillClass(
+        Skill.Fighting,
+        'Fighting',
+        'Melee attacking'
     );
 
-    export const Swords = new Skill(
-        'Swords',
-        Family.MeleeWeapons
+    export const Defense = new SkillClass(
+        Skill.Defense,
+        'Defense',
+        'Melee defending'
     );
 
-    export const Bludg = new Skill(
-        'Bludgeoning Weapons',
-        Family.MeleeWeapons
-    );
-
-    export const Bows = new Skill(
-        'Bows',
-        Family.RangedWeapons
-    );
-
-    export const Evasion = new Skill(
+    export const Evasion = new SkillClass(
+        Skill.Evasion,
         'Evasion',
-        Family.Trickery
+        'General dodging'
     );
 
-    export const Sneaking = new Skill(
-        'Sneaking',
-        Family.Trickery
-    )
-}
+    export const Armour = new SkillClass(
+        Skill.Armour,
+        'Armour',
+        'Do things while wearing armour'
+    );
 
-type SkillLevel =
-   0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9
-| 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19
-| 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29
-| 30 | 31 | 32 | 33 | 34 | 35 | 36 | 37 | 38 | 39
-| 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 48 | 49
-| 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 58 | 59
-| 60 | 61 | 62 | 63 | 64 | 65 | 66 | 67 | 68 | 69
-| 70 | 71 | 72 | 73 | 74 | 75 | 76 | 77 | 78 | 79
-| 80 | 81 | 82 | 83 | 84 | 85 | 86 | 87 | 88 | 89
-| 90 | 91 | 92 | 93 | 94 | 95 | 96 | 97 | 98 | 99
+    /*
+        TODO...
+        Stabbing = 'stabbing',
+        Slashing = 'slashing',
+        Bludgeoning = 'bludg',
+        Archery = 'archery',
 
-interface SkillLevelRequirement {
-    level: SkillLevel
-}
+        AirMagick = 'air',
+        EarthMagick = 'earth',
+        FireMagick = 'fire',
+        WaterMagick = 'water',
+        EtherealMagick = 'ethereal',
+        UmbralMagick = 'umbral',
 
-interface SkillRequirement extends SkillLevelRequirement {
-    skill: Skill
-}
-
-interface SkillFamilyRequirement extends SkillLevelRequirement {
-    family: Family
-}
-
-export type SkillRequirements = SkillRequirement | SkillFamilyRequirement | Array<SkillRequirement | SkillFamilyRequirement>
+        Stealth = 'stealth',
+        Awareness = 'awareness',
+        LootFinding = 'lootfinding',
+        FirstAid = 'firstaid'
+    */
+}  
 
 export default Skills

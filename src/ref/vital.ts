@@ -1,10 +1,11 @@
 export enum Vital {
-    Hp,
-    HpRegen,
-    Ep,
-    EpRegen,
-    Mp,
-    MpRegen
+    HP = 'hp',
+    EP = 'ep',
+    MP = 'mp',
 }
 
-export default Vital
+export interface VitalSet {
+    [Vital.HP]: number,
+    [Vital.EP]: number,
+    [Vital.MP]: number
+}

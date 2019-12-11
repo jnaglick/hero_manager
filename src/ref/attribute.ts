@@ -1,7 +1,11 @@
 export enum Attribute {
-    Str,
-    Dex,
-    Mag
+    STR = 'str',
+    AGL = 'agl',
+    MAG = 'mag'
 }
 
-export default Attribute
+export interface AttributeSet {
+    [Attribute.STR]: number,
+    [Attribute.AGL]: number,
+    [Attribute.MAG]: number,
+}

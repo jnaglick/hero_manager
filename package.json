@@ -3,7 +3,7 @@
   "scripts": {
     "build": "npx webpack --mode=production",
     "start": "node dist/server.bundle.js",
-    "build:dev:": "npx webpack --mode=development",
+    "build:dev": "npx webpack --mode=development",
     "watch:dev": "npx webpack --watch --mode=development",
     "nodemon:dev": "nodemon --watch \"dist/server.bundle.js\" --exec \"npm run start\"",
     "start:dev": "concurrently \"npm run watch:dev\" \"npm run nodemon:dev\""

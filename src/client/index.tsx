@@ -1,27 +1,25 @@
 import { h, render, Component } from 'preact';
-import User from 'model/user'
+import Character from 'model/character'
 
 class Hello extends Component {
     constructor() {
         super();
-        fetch('/api/user')
+        fetch('/api/character')
         .then(response => response.json())
-        .then(({ users }) => {
-            this.setState({ users });
+        .then(({ characters }) => {
+            this.setState({ characters });
         })
     }
 
-	render(props: {}, { users }: { users: Array<User> }) {
-        console.log(users);
-
-        if (!users) {
+	render(props: {}, { characters }: { characters: Array<Character> }) {
+        if (!characters) {
             return 'loading'
         }
 
         return <div>
             { 
-                users.map((user) =>
-                    <div>name: { user.name }</div>
+                characters.map((character) =>
+                    <div>name: { character.str }</div>
                 ) 
             }
         </div>
