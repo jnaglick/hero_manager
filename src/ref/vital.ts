@@ -4,8 +4,11 @@ export enum Vital {
     MP = 'mp',
 }
 
-export interface VitalSet {
-    [Vital.HP]: number,
-    [Vital.EP]: number,
-    [Vital.MP]: number
+export type VitalSet<T> = {
+    readonly [k in Vital]: T
 }
+
+type VitalLevel = number;
+export type VitalLevels = VitalSet<VitalLevel>;
+
+export default Vital

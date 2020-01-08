@@ -1,11 +1,17 @@
 export enum Attribute {
     STR = 'str',
     AGL = 'agl',
-    MAG = 'mag'
+    MAG = 'mag',
+    SPD = 'spd'
+    // hp skill (con) ?
+    // mp skill ?
 }
 
-export interface AttributeSet {
-    [Attribute.STR]: number,
-    [Attribute.AGL]: number,
-    [Attribute.MAG]: number,
+export type AttributeSet<T> = {
+    readonly [k in Attribute]: T
 }
+
+type AttributeLevel = number;
+export type AttributeLevels = AttributeSet<AttributeLevel>;
+
+export default Attribute

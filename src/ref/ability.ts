@@ -1,43 +1,32 @@
-import { Skill, SkillRequirement } from 'ref/skill'
+export enum Ability {
+    Berserk = 'berserk',
+    Backstab = 'backstab',
+    Parry = 'parry'
+    // turtle
+    // whirlwind
+    // sneak
+    // hide
+}
 
-export class Ability {
-    readonly name: String;
-    readonly requirements?: SkillRequirement;
+export type AbilitySet<T> = {
+    readonly [k in Ability]: T
+}
 
-    constructor(name: String,
-                requirements?: SkillRequirement
-    ) {
-        this.name = name;
-        this.requirements = requirements;
+interface AbilityDictionaryEntry {
+    readonly name: string;
+    // desc
+    // requirements
+}
+export const AbilityDictionary: AbilitySet<AbilityDictionaryEntry> = {
+    [Ability.Berserk]: {
+        name: 'Berserk'
+    },
+    [Ability.Backstab]: {
+        name: 'Backstab'
+    },
+    [Ability.Parry]: {
+        name: 'Parry'
     }
 }
 
-export namespace Abilities {
-/*
-    Move, Attack, Cast, Consume
-
-    Parry,
-    Berserk,
-    Whirlwind, 
-    Sneak,
-    Hide/Invis,
-    Backstab,
-*/
-    export const Move = new Ability(
-        'Move'
-    );
-
-    export const Backstab = new Ability(
-        'Backstab',
-        [{
-            level: 30,
-            skill: Skill.Stabbing
-        },
-        {
-            level: 30,
-            skill: Skill.Stealth
-        }]
-    )
-}
-
-export default Abilities
+export default Ability

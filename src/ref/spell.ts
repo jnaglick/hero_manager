@@ -1,40 +1,45 @@
-import { SkillRequirement } from './skill'
-
-class SpellClass {
-    readonly name: string;
-    readonly skillRequirement: SkillRequirement;
-    
-    constructor(name: string, skillRequirement: SkillRequirement) {
-        this.name = name;
-        this.skillRequirement = skillRequirement;
-    }
-}
-
 export enum Spell {
-    FireBolt = 'firebolt'
+    Fireball = 'fireball',
+    Firestorm = 'firestorm',
+    Fissure = 'fissure'
 }
 
-export namespace Spells {
-/*    
-    [Skill.AirMagick]: SkillLevel,
-    [Skill.EarthMagick]: SkillLevel,
-    [Skill.FireMagick]: SkillLevel,
-    [Skill.WaterMagick]: SkillLevel,
-    [Skill.EtherealMagick]: SkillLevel,
-    [Skill.UmbralMagick]: SkillLevel,
-*/
-
-    export const FireBolt = new SpellClass(
-        'Fire Bolt',
-        []
-    ) 
+export enum SpellFamily {
+    Air = 'air',
+    Earth = 'earth',
+    Fire = 'fire',
+    Water = 'water',
+    Ethereal = 'ethereal',
+    Umbral = 'umbral'
 }
 
-/*
-    firebolt
-    fireball
-    firestorm
-    icestorm
+type SpellSet<T> = {
+    readonly [k in Spell]: T
+}
 
-    fissure // earth attackAoe
-*/
+interface SpellDictionaryEntry {
+    readonly name: string;
+    readonly family: SpellFamily | Array<SpellFamily>;
+    readonly desc?: string;
+}
+export const SpellDictionary: SpellSet<SpellDictionaryEntry> = {
+    // spark
+    [Spell.Fireball]: {
+        name: 'Fireball',
+        family: SpellFamily.Fire,
+        desc: 'fireball'
+    },
+    [Spell.Firestorm]: {
+        name: 'Firestorm',
+        family: [SpellFamily.Fire, SpellFamily.Air],
+        desc: 'firestorm'
+    },
+    [Spell.Fissure]: {
+        name: 'Fissure',
+        family: [SpellFamily.Fire, SpellFamily.Earth],
+        desc: 'fissure'
+    }
+    // icestorm
+}
+
+export default Spell

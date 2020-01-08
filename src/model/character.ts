@@ -1,26 +1,30 @@
-//import Ability from 'ref/ability'
-import { AttributeSet } from 'ref/attribute'
-import { SkillSet } from 'ref/skill'
-import { VitalSet } from 'ref/vital'
+import { AttributeLevels } from 'ref/attribute'
+import { Skill, SkillLevels } from 'ref/skill'
+import { VitalLevels } from 'ref/vital'
 
 export class Character {
     // abilities
-    attributes: AttributeSet
-    skills: SkillSet
-    vitals: VitalSet
+    attributes: AttributeLevels
+    skills: SkillLevels
+    vitals: VitalLevels
 
     constructor() {
         this.attributes = { 
             str: 0, 
             agl: 0, 
-            mag: 0 
+            mag: 0,
+            spd: 0
         };
 
         this.skills = { 
             fighting: 0,
+            arcobatics: 0,
+            spellcasting: 0,
+
+            /*
             defense: 0,
-            armour: 0,
             evasion: 0,
+            armour: 0,
 
             stabbing: 0,
             slashing: 0,
@@ -38,6 +42,7 @@ export class Character {
             awareness: 0,
             lootfinding: 0,
             firstaid: 0
+            */
         }
 
         this.vitals = { 
